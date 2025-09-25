@@ -31,6 +31,20 @@ h4 {
   padding: 0;
 }
 
+h2 {
+  font-family: var(--raleway-font);
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 120%;
+}
+
+p {
+  font-family: var(--poppins-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 200%;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -103,6 +117,14 @@ ul {
 
 }
 
+@media (max-width:850px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding: 0 5%;
+  }
+}
+
 /* Navbar */
 
 nav {
@@ -145,6 +167,50 @@ nav .nav-link-list li a {
   line-height: normal;
 }
 
+nav .menu_icon,
+nav .close_icon {
+  display: none;
+}
+
+@media(max-width:850px) {
+  nav .nav-link-list {
+    gap: 40px;
+  }
+}
+
+@media(max-width:414px) {
+  nav .nav-logo {
+    font-size: 36px;
+  }
+
+  nav .nav-link-list {
+    display: none;
+  }
+
+  /* nav .menu_icon{
+    display: block;
+  }
+  nav .nav-link-list{
+    background-color: var(--dark-color);
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 40px;
+    left: 0;
+    top: 0;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 60px;
+  }
+  nav .nav-link-list li a{
+    font-size: 24px;
+  }
+  nav .nav-link-list li .btn{
+    background-color: var(--orange-color);
+  } */
+}
+
 /* Hero Section */
 
 .hero_Section {
@@ -152,7 +218,10 @@ nav .nav-link-list li a {
   background: var(--background-gradient);
   color: white;
   padding-top: 30px;
+  flex-direction: row;
+
 }
+
 
 .hero_Section .left-side {
   flex: 1;
@@ -162,26 +231,80 @@ nav .nav-link-list li a {
   font-family: var(--raleway-font);
   font-size: 50px;
   font-weight: 900;
-  list-style: 125%;
+  line-height: 125%;
 }
 
 .hero_Section .left-side p {
-  font-family: var(--poppins-font);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 200%;
   margin-bottom: 30px;
   width: 457px;
 }
 
 .hero_Section .right-side {
-  align-self: flex-end;
+  align-self: end;
+  position: relative;
 }
 
 .hero_Section .right-side img {
   width: auto;
-  height: 720px;
+  max-width: 100%;
+  /* height: 720px; */
   vertical-align: middle;
+}
+
+@media (max-width:850px) {
+
+  h2 {
+    font-size: 50px;
+    line-height: 125%;
+  }
+
+  .btn {
+    padding: 12px 32px;
+  }
+
+  .hero_Section {
+    flex-direction: column;
+    padding-top: 150px;
+    justify-content: flex-end;
+    height: auto;
+  }
+
+
+  .hero_Section .right-side img {
+    width: auto;
+    /* height: 650px; */
+  }
+}
+
+@media(max-width:414px) {
+  .hero_Section .left-side .hero-title {
+    font-size: 36px;
+  }
+
+  .hero_Section .left-side p {
+    width: 80%;
+    text-align: left;
+    margin: 0 auto 30px auto;
+  }
+
+  .hero_Section .right-side img {
+    max-width: 100%;
+    width: 70%;
+    height: auto;
+    object-fit: cover;
+
+  }
+
+  .hero_Section .left-side {
+    align-items: center;
+    text-align: center;
+  }
+  .hero_Section .right-side {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+
 }
 
 /* Achivement-cards */
@@ -211,8 +334,6 @@ nav .nav-link-list li a {
 }
 
 .achivement-card p {
-  font-size: 16px;
-  font-weight: 400;
   margin-top: 10px;
   margin-bottom: 8px;
 }
@@ -230,13 +351,13 @@ nav .nav-link-list li a {
 }
 
 .achivement-card.students-enrolled {
-  left: 47%;
-  top: 380px;
+  left: -17%;
+  top: 35%;
 }
 
 .achivement-card.overall-rating {
-  left: 45%;
-  top: 540px;
+  left: -24%;
+  top: 64%;
 }
 
 .achivement-card .bg {
@@ -249,6 +370,33 @@ nav .nav-link-list li a {
   left: 8px;
   background: linear-gradient(180deg, #6F7DFB 0%, #3B448F 100%);
 
+}
+
+@media(max-width:414px){
+  .achivement-card .content {
+    padding: 8px 16px;
+  }
+  .achivement-card .content h3 {
+    font-size: 30px;
+  }
+  .achivement-card .content p{
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .achivement-card .content div{
+    gap: 8px;
+  }
+  .achivement-card.students-enrolled{
+    left: -3%;
+    top: 22%;
+  }
+  .achivement-card.overall-rating{
+    left: -5%;
+    top: 50%;
+    
+  }
+  
 }
 
 /* Testimonys */
@@ -268,21 +416,16 @@ nav .nav-link-list li a {
 
 }
 
+.testimonys_Section .alt-sm {
+  display: none;
+}
+
 .testimonys_Section .right-side h2 {
-  font-family: var(--raleway-font);
-  font-size: 60px;
-  font-weight: 900;
-  line-height: 120%;
   color: var(--dark-blue-color);
   margin-bottom: 0;
 }
 
 .testimonys_Section .right-side p {
-  font-family: var(--poppins-font);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 200%;
-
   margin-bottom: 30px;
 }
 
@@ -293,16 +436,17 @@ nav .nav-link-list li a {
   justify-content: space-around;
   flex-direction: column;
   z-index: 10;
+  padding-top: 20px;
 }
 
 .testimonys_Section .hr-bar {
-  height: 550px;
+  height: 74%;
   border-radius: 24px;
   background-color: var(--dark-color);
   width: 28px;
   z-index: 1;
   position: absolute;
-  left: 270px;
+  left: 17%;
 }
 
 .testimonys_Section .left-side .testimonys_block {
@@ -371,6 +515,71 @@ nav .nav-link-list li a {
 
 }
 
+@media(max-width:850px) {
+  .testimonys_Section {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 60px 0;
+    gap: 40px;
+  }
+
+  .testimonys_Section .right-side {
+    width: auto;
+    text-align: center;
+    align-items: center;
+    order: 1;
+  }
+
+  .testimonys_Section .left-side {
+    width: 90%;
+    align-items: center;
+    order: 2;
+  }
+
+  .testimonys_Section .left-side .testimonys_blocks {
+    height: auto;
+    gap: 40px;
+  }
+
+  .testimonys_Section .left-side .testimonys_block {
+    width: 100%;
+  }
+
+  .testimonys_block.block-1,
+  .testimonys_block.block-2 {
+    transform: translateX(0);
+  }
+
+  .testimonys_Section .testimonys_block .testimonys_block-name-image {
+    gap: 20px;
+  }
+
+  .testimonys_Section .testimonys_block-name-image .testimonys_block-image {
+    flex-direction: row;
+    gap: 20px;
+    padding-bottom: 0;
+  }
+
+  .right-side h2 {
+    order: 1;
+  }
+
+  .right-side p {
+    order: 2;
+  }
+
+  .right-side .btn {
+    display: none;
+  }
+
+  .testimonys_Section .alt-sm {
+    display: inline-block;
+    order: 3;
+    margin-top: 20px;
+  }
+}
+
 /* Courses Section */
 
 .courses_Section {
@@ -382,15 +591,8 @@ nav .nav-link-list li a {
 }
 
 .courses_Section h2 {
-
   color: #FFF;
   text-align: center;
-  font-family: var(--raleway-font);
-  font-size: 60px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 120%;
-
 }
 
 .courses_Section .courses-lists {
@@ -410,9 +612,9 @@ nav .nav-link-list li a {
   gap: 30px;
   border-radius: 24px;
   background: #FFF;
-  height: 420px;
-  width: 550px;
-
+  height: 100%;
+  width: 85%;
+  justify-content: space-evenly;
 }
 
 .courses_Section .courses-block img {
@@ -443,12 +645,42 @@ nav .nav-link-list li a {
 
 .courses_Section .courses-title-duration p {
   color: #023047;
-  font-family: Raleway;
+  font-family: var(--raleway-font);
   font-size: 16px;
-  font-style: normal;
   font-weight: 900;
   line-height: 150%;
 
+}
+
+@media(max-width:850px) {
+  .courses_Section .courses-lists {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .courses_Section {
+    padding-bottom: 20px;
+  }
+}
+
+@media(max-width:414px) {
+  .courses_Section .courses-block {
+    width: 60%;
+  }
+
+  .courses_Section .courses-title-duration {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .courses_Section .courses-title-duration p {
+    margin: 0;
+  }
+
+  .courses_Section .courses-title-duration h3 {
+    font-size: 24px;
+  }
 }
 
 /* Get Our App Section */
@@ -463,20 +695,12 @@ nav .nav-link-list li a {
 }
 
 .getourapp_Section h2 {
-  font-family: var(--raleway-font);
-  font-size: 60px;
-  font-weight: 900;
-  line-height: 120%;
   color: var(--dark-blue-color);
   margin-bottom: 0;
   text-align: center;
 }
 
 .getourapp_Section p {
-  font-family: var(--poppins-font);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 200%;
   text-align: center;
   max-width: 600px;
 }
@@ -517,6 +741,23 @@ nav .nav-link-list li a {
 
 }
 
+@media(max-width:850px) {
+  .getourapp_Section .app-links {
+    margin-top: 20px;
+  }
+
+  .getourapp_Section {
+    height: auto;
+  }
+}
+
+@media(max-width:414px) {
+  .getourapp_Section .app-links {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
 /* Footer Section */
 
 .footer_Section {
@@ -528,6 +769,7 @@ nav .nav-link-list li a {
   gap: 20px;
   height: 50vh;
   padding: 30px 10%;
+
 }
 
 .footer_Section .links-container {
@@ -537,6 +779,7 @@ nav .nav-link-list li a {
   gap: 20px;
   width: 100%;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .footer_Section .footer-links {
@@ -638,19 +881,12 @@ nav .nav-link-list li a {
 .input-with-button button {
   position: absolute;
   top: 50%;
-  /* Vertically center the button */
   right: 8px;
-  /* Position it 8px from the right edge */
   transform: translateY(-50%);
-  /* Fine-tunes vertical centering */
-
-  /* Remove any margin or extra border settings from the original button style */
   margin: 0;
   border: none;
   border-radius: 8px;
   background: var(--dark-blue-color);
-
-  /* Add padding to the button to match the input's height if necessary */
   padding: 0 16px;
   height: 80%;
 
@@ -659,4 +895,69 @@ nav .nav-link-list li a {
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
+}
+
+@media(max-width:850px) {
+
+  .footer_Section {
+    height: auto;
+  }
+
+  .footer_Section .links-container {
+    justify-content: flex-start;
+  }
+
+  .footer_Section .footer-links:nth-child(2) {
+    margin-left: 60px;
+  }
+
+
+}
+
+@media(max-width:414px) {
+  .footer_Section .footer-links:nth-child(2) {
+    margin-left: 0;
+  }
+
+  .input-with-button {
+    width: 100%;
+  }
+
+  .footer_Section .links-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .footer_Section .footer-links:nth-child(2) {
+    margin-left: 0;
+  }
+
+  .footer_Section .footer-links .footer-link-list .footer-link-item {
+    padding-left: 0;
+  }
+
+  .footer_Section .footer-links,
+  .footer_Section .footer-links .footer-link-list,
+  .footer_Section .footer-link-list .footer-link-item {
+    align-items: center;
+  }
+
+  .input-with-button {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-with-button .btn {
+    position: static;
+    transform: translateY(0);
+    width: 40%;
+    height: 40px;
+    background-color: var(--dark-blue-color);
+  }
 }

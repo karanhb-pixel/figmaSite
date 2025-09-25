@@ -46,6 +46,7 @@ const Testimonys = () => {
         </p>
         <button className="btn light">Learn More</button>
       </div>
+      <button className="btn light alt-sm">Learn More</button>
     </div>
   );
 };

@@ -17,6 +17,9 @@ import React from 'react'
                         Enroll Now</button></li>
                 </ul>
             {/* </div> */}
+            <div className="menu_icon"><img src="Menu_Outline.svg" alt="" /></div>
+            <div className="close_icon"><img src="XOutline.svg" alt="" /></div>
+
         </nav>
    
   )
