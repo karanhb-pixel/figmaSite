@@ -1,69 +1,118 @@
-# React + TypeScript + Vite
+# Game Dev Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive landing page for a Game Development course platform built with React and TypeScript.
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This application is a single-page website designed to promote and enroll users in a comprehensive Game Development course. It features sections including a hero section, course listings, testimonials, app download prompts, and a footer. The site is optimized for performance with lazy loading and includes SEO enhancements like a robots.txt file.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend Framework**: React 19
+- **Language**: TypeScript
+- **Build Tool**: Vite 7
+- **Styling**: CSS (with custom styles in App.css)
+- **Linting**: ESLint with TypeScript support
+- **Fonts**: Google Fonts (Poppins and Raleway)
+- **Performance**: Lazy loading for components, optimized images
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Responsive design for mobile and desktop
+- Hero section with course overview and enrollment CTA
+- Course listings section
+- Testimonials from students
+- App download section
+- Footer with links and social media
+- SEO optimized with robots.txt
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd vite-project
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+### Build for Production
+
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Preview Production Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run preview
 ```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+vite-project/
+├── public/
+│   ├── robots.txt
+│   └── assets/ (images, icons)
+├── src/
+│   ├── components/
+│   │   ├── AchievementCard.jsx
+│   │   ├── AppLink.jsx
+│   │   ├── CourseBlock.jsx
+│   │   ├── Courses.jsx
+│   │   ├── Footer.jsx
+│   │   ├── FooterLinkGroup.jsx
+│   │   ├── Getourapp.jsx
+│   │   ├── Hero_Section.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── SubscriptionForm.jsx
+│   │   ├── TestimonialBlock.jsx
+│   │   └── Testimonys.jsx
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run linting: `npm run lint`
+5. Commit your changes
+6. Push to the branch
+7. Open a Pull Request
+
+## License
+
+This project is private and not licensed for public use.
