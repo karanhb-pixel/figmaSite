@@ -43,9 +43,9 @@ const Navbar = () => {
                 role="menu" // Semantic role for the list of menu items
             >
                 {/* 5. Use <a> tags for navigation and <li> tags for list items */}
-                <li role="none"><a href="#about" role="menuitem">About</a></li>
-                <li role="none"><a href="#services" role="menuitem">Services</a></li>
-                <li role="none"><a href="#work" role="menuitem">Our Work</a></li>
+                <li role="none"><a href="#getourapp" role="menuitem">About</a></li>
+                <li role="none"><a href="#courses" role="menuitem">Courses</a></li>
+                <li role="none"><a href="#testimonys" role="menuitem">Testimonys</a></li>
                 
                 {/* 6. Action Button - role="none" removes the li item from the list's semantic structure */}
                 <li role="none">

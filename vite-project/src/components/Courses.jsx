@@ -20,7 +20,7 @@ const coursesData = [
 
 const Courses = () => {
   return (
-    <section className="courses_Section container">
+    <section className="courses_Section container" id="courses">
       <h2>Our Courses</h2>
       <div className="courses-lists">
         {coursesData.map((course) => (

@@ -1,0 +1,14 @@
+# Robots.txt for better SEO and AI crawler access
+# Allow all web crawlers to access the site
+User-agent: *
+Disallow:
+
+# Allow specific AI crawlers
+User-agent: GPTBot
+Disallow:
+
+User-agent: ClaudeBot
+Disallow:
+
+User-agent: Bingbot
+Disallow:

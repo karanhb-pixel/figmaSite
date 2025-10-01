@@ -18,7 +18,7 @@ const appLinksData = [
 
 const Getourapp = () => {
   return (
-    <section className="getourapp_Section container">
+    <section className="getourapp_Section container" id="getourapp">
       <h2>Get our App</h2>
       <p>You can use our App for a better experience on smartphones.</p>
 

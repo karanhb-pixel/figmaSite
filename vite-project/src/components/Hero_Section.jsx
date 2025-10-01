@@ -5,7 +5,7 @@ const Hero_Section = () => {
   const heroImageSrc = "hero-image 1.png";
 
   return (
-    <section className="hero_Section container">
+    <section className="hero_Section container" id="home">
 
       <div className="left-side">
         <h1 className="hero-title">

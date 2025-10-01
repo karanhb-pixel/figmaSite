@@ -22,7 +22,7 @@ const testimonialsData = [
 
 const Testimonys = () => {
   return (
-    <section className="testimonys_Section container">
+    <section className="testimonys_Section container" id="testimonys">
 
       <div className="left-side">
         <div className="hr-bar" aria-hidden="true"></div>
