@@ -6,6 +6,15 @@ A modern, responsive landing page for a Game Development course platform built w
 
 This application is a single-page website designed to promote and enroll users in a comprehensive Game Development course. It features sections including a hero section, course listings, testimonials, app download prompts, and a footer. The site is optimized for performance with lazy loading and includes SEO enhancements like a robots.txt file.
 
+
+## Live Link 
+
+- HomePage: [https://artgamedev.netlify.app/](https://artgamedev.netlify.app/) 
+
+## ScreenShot
+
+![HomePage Screenshot](public/GameDev_homepage.jpeg)
+
 ## Technologies Used
 
 - **Frontend Framework**: React 19
