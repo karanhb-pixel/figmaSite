@@ -1,12 +1,16 @@
 import React from "react";
+import AchievementCard from "./AchievementCard.jsx";
 
 const Hero_Section = () => {
+  const heroImageSrc = "hero-image 1.png";
+
   return (
-    <div className="hero_Section container">
+    <section className="hero_Section container">
+
       <div className="left-side">
         <h1 className="hero-title">
           Learn the art of <br />
-          Game Dev
+          <span className="highlight-text">Game Dev</span>
         </h1>
         <p>
           This is a comprehensive course on Game Development. You will learn
@@ -15,33 +19,29 @@ const Hero_Section = () => {
         </p>
         <button className="btn light enroll-btn">Enroll Now</button>
       </div>
+
       <div className="right-side">
-        <div className="achivement-cards">
-          <div className="achivement-card students-enrolled">
-            <div className="content">
-              <div>
-                <h3>32K</h3>
-              </div>
-              <p>Students Enrolled</p>
-            </div>
-            <div className="bg"></div>
-          </div>
-        </div>
-        <div className="achivement-cards">
-          <div className="achivement-card overall-rating">
-            <div className="content">
-              <div>
-                <h3>4.7</h3>
-                <img src="star.png" alt="" />
-              </div>
-              <p>Overall Rating</p>
-            </div>
-            <div className="bg"></div>
-          </div>
-        </div>
-        <img src="hero-image 1.png" alt="" />
+
+        <img
+          src={heroImageSrc}
+          alt="Illustration of a student studying game development"
+          fetchPriority="high"
+        />
+
+        <AchievementCard
+          type="students"
+          value="32K"
+          label="Students Enrolled"
+        />
+
+        <AchievementCard
+          type="rating"
+          value="4.7"
+          label="Overall Rating"
+          icon="star.png"
+        />
       </div>
-    </div>
+    </section>
   );
 };
 

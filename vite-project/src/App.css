@@ -1,41 +1,57 @@
+/*================================================
+  1. VARIABLES & UTILITIES
+================================================*/
+
 :root {
+  /* Colors */
   --orange-color: #DA722C;
   --blue-color: #057ADA;
   --dark-blue-color: #023047;
   --light-color: #E8F7FB;
   --dark-color: #070917;
   --light-blue-color: #6F7DFB;
+
+  /* Fonts */
   --raleway-font: 'Raleway', sans-serif;
   --poppins-font: 'Poppins', sans-serif;
+
+  /* Gradients */
   --background-gradient: linear-gradient(180deg, var(--light-blue-color) 0%, var(--dark-blue-color) 100%);
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 30px;
+  --spacing-lg: 60px;
+  --container-padding-desktop: 10%;
+  --container-padding-mobile: 5%;
 }
 
+/* Base Reset */
 *,
 *::after,
 *::before {
   box-sizing: border-box;
 }
 
-
 body {
   margin: 0;
   font-family: var(--poppins-font);
 }
 
-p,
-h1,
-h2,
-h3,
-h4 {
+/* Typography Reset */
+p, h1, h2, h3, h4 {
   margin: 0;
   padding: 0;
 }
 
+/* Base Typography Styles */
 h2 {
   font-family: var(--raleway-font);
   font-weight: 900;
   font-size: 60px;
   line-height: 120%;
+  color: var(--dark-blue-color); /* Added base color for H2 */
 }
 
 p {
@@ -48,7 +64,6 @@ p {
 a {
   text-decoration: none;
   color: inherit;
-
 }
 
 ul {
@@ -57,7 +72,51 @@ ul {
   padding: 0;
 }
 
+/*================================================
+  2. LAYOUT & STRUCTURE
+================================================*/
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+}
+
+.container {
+  /* Default to a flexible container for all sections */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%; /* Changed to use 100% width and padding */
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+  min-height: 100vh; /* Changed to min-height for better flow */
+}
+
+/* Global Media Query: Tablet/Small Desktop (850px) */
+@media (max-width: 850px) {
+  h2 {
+    font-size: 50px;
+    line-height: 125%;
+  }
+  .container {
+    flex-direction: column;
+    min-height: auto;
+    padding: 0 var(--container-padding-mobile);
+  }
+}
+
+/* Global Media Query: Mobile (414px) - Used for specific, smaller adjustments */
+@media(max-width: 414px) {
+  /* No global changes here, rely on 850px and section-specific overrides */
+}
+
+
+/*================================================
+  3. COMPONENTS
+================================================*/
 
 /* Buttons */
 .btn {
@@ -65,12 +124,13 @@ ul {
   border-radius: 24px;
   color: white;
   display: inline-block;
-  text-decoration: none;
   font-weight: bold;
   font-size: 16px;
   border: none;
   cursor: pointer;
   position: relative;
+  /* Add transition for hover effects */
+  transition: background-color 0.3s ease; 
 }
 
 .btn.dark {
@@ -81,6 +141,10 @@ ul {
   background: var(--orange-color);
 }
 
+.btn.enroll-btn {
+  padding-left: 60px; /* Space for the icon */
+}
+
 .btn.enroll-btn::before {
   content: url('enroll_icon.svg');
   position: absolute;
@@ -89,72 +153,45 @@ ul {
   transform: translateY(-50%);
 }
 
-.btn.enroll-btn {
-  padding-left: 60px;
-}
-
-
-/*  Main  */
-.wrapper {
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-}
-
-/* Container */
-
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10%;
-  height: 100vh;
-  width: 100%;
-
-}
-
-@media (max-width:850px) {
-  .container {
-    flex-direction: column;
-    height: auto;
-    padding: 0 5%;
+@media (max-width: 850px) {
+  .btn {
+    padding: 12px 32px;
   }
 }
 
-/* Navbar */
+/*================================================
+  4. NAVIGATION
+================================================*/
 
 nav {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10%;
+  padding: 0 var(--container-padding-desktop);
   background-color: transparent;
+  /* background: var(--background-gradient); */
   color: white;
   z-index: 100;
   position: fixed;
-  max-width: 100%;
   width: 100%;
-  top: 36px;
-  margin: 0 auto;
+  padding-top: 36px;
+  padding-bottom: 10px;
+  transition: all 500ms ease;
+}
+nav.scrolled{
+  background-color: var(--dark-color);
+  
 }
 
 nav .nav-logo {
   font-size: 40px;
   font-weight: 900;
-  font-style: normal;
   font-family: var(--raleway-font);
 }
 
 nav .nav-link-list {
   display: flex;
-  flex-direction: row;
-  gap: 60px;
-  justify-content: space-evenly;
+  gap: var(--spacing-lg);
   align-items: center;
 }
 
@@ -162,9 +199,7 @@ nav .nav-link-list li a {
   font-size: 16px;
   font-family: var(--poppins-font);
   font-weight: 700;
-  font-style: normal;
   color: white;
-  line-height: normal;
 }
 
 nav .menu_icon,
@@ -172,56 +207,38 @@ nav .close_icon {
   display: none;
 }
 
-@media(max-width:850px) {
+/* Tablet/Small Desktop Nav Adjustments */
+@media(max-width: 850px) {
+  nav {
+    padding: 15px var(--container-padding-mobile);
+  }
   nav .nav-link-list {
     gap: 40px;
   }
 }
 
-@media(max-width:414px) {
+/* Mobile Nav Collapse (414px) */
+@media(max-width: 414px) {
   nav .nav-logo {
     font-size: 36px;
   }
 
   nav .nav-link-list {
-    display: none;
+    display: none; /* Hide link list */
   }
-
-  /* nav .menu_icon{
-    display: block;
-  }
-  nav .nav-link-list{
-    background-color: var(--dark-color);
-    height: 100vh;
-    width: 100%;
-    flex-direction: column;
-    position: absolute;
-    margin-top: 40px;
-    left: 0;
-    top: 0;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 60px;
-  }
-  nav .nav-link-list li a{
-    font-size: 24px;
-  }
-  nav .nav-link-list li .btn{
-    background-color: var(--orange-color);
-  } */
 }
 
-/* Hero Section */
+/*================================================
+  5. SECTION STYLES
+================================================*/
 
+/* HERO SECTION */
 .hero_Section {
-
   background: var(--background-gradient);
   color: white;
   padding-top: 30px;
-  flex-direction: row;
-
+  /* inherits display:flex from .container */
 }
-
 
 .hero_Section .left-side {
   flex: 1;
@@ -232,84 +249,71 @@ nav .close_icon {
   font-size: 50px;
   font-weight: 900;
   line-height: 125%;
+  color: white; /* Explicitly set to white */
 }
 
 .hero_Section .left-side p {
-  margin-bottom: 30px;
-  width: 457px;
+  margin-bottom: var(--spacing-md);
+  max-width: 457px; /* Use max-width for better responsiveness */
 }
 
 .hero_Section .right-side {
-  align-self: end;
+  align-self: flex-end; /* Use flex-end for clarity */
   position: relative;
 }
 
 .hero_Section .right-side img {
   width: auto;
   max-width: 100%;
-  /* height: 720px; */
   vertical-align: middle;
 }
 
-@media (max-width:850px) {
-
-  h2 {
-    font-size: 50px;
-    line-height: 125%;
-  }
-
-  .btn {
-    padding: 12px 32px;
-  }
-
+/* Hero Section Tablet/Mobile (850px) */
+@media (max-width: 850px) {
   .hero_Section {
     flex-direction: column;
     padding-top: 150px;
     justify-content: flex-end;
-    height: auto;
+    min-height: auto; /* Overrides min-height: 100vh */
   }
-
 
   .hero_Section .right-side img {
     width: auto;
-    /* height: 650px; */
   }
 }
 
-@media(max-width:414px) {
+/* Hero Section Mobile (414px) */
+@media(max-width: 414px) {
   .hero_Section .left-side .hero-title {
     font-size: 36px;
   }
 
   .hero_Section .left-side p {
     width: 80%;
-    text-align: left;
-    margin: 0 auto 30px auto;
+    text-align: center; /* Centered for mobile */
+    margin: 0 auto var(--spacing-md) auto;
+  }
+  
+  .hero_Section .left-side {
+    align-items: center;
+    text-align: center;
   }
 
+  .hero_Section .right-side {
+    display: flex;
+    justify-content: center; /* Center the image */
+    width: 100%;
+  }
+  
   .hero_Section .right-side img {
     max-width: 100%;
     width: 70%;
     height: auto;
     object-fit: cover;
-
   }
-
-  .hero_Section .left-side {
-    align-items: center;
-    text-align: center;
-  }
-  .hero_Section .right-side {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-
 }
 
-/* Achivement-cards */
-
-
+/* --- ACHIEVEMENT CARDS --- */
 .achivement-card {
   position: absolute;
 }
@@ -317,8 +321,7 @@ nav .close_icon {
 .achivement-card .content {
   background-color: white;
   border-radius: 24px;
-  padding: 8px 24px;
-  font-family: var(--poppins-font);
+  padding: var(--spacing-xs) 24px;
   color: var(--dark-blue-color);
   line-height: 125%;
   position: relative;
@@ -329,13 +332,11 @@ nav .close_icon {
   font-size: 36px;
   font-weight: 700;
   text-align: center;
-  margin: 0;
-  width: 100%;
 }
 
 .achivement-card p {
   margin-top: 10px;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-xs);
 }
 
 .achivement-card .content div {
@@ -369,24 +370,24 @@ nav .close_icon {
   top: -6px;
   left: 8px;
   background: linear-gradient(180deg, #6F7DFB 0%, #3B448F 100%);
-
 }
 
-@media(max-width:414px){
+/* Achievement Cards Mobile (414px) */
+@media(max-width: 414px){
   .achivement-card .content {
-    padding: 8px 16px;
+    padding: var(--spacing-xs) 16px;
   }
   .achivement-card .content h3 {
     font-size: 30px;
   }
   .achivement-card .content p{
     font-size: 14px;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
   }
   .achivement-card .content div{
-    gap: 8px;
+    gap: var(--spacing-xs);
   }
+  /* Updated positions for mobile */
   .achivement-card.students-enrolled{
     left: -3%;
     top: 22%;
@@ -394,26 +395,16 @@ nav .close_icon {
   .achivement-card.overall-rating{
     left: -5%;
     top: 50%;
-    
   }
-  
 }
-
-/* Testimonys */
-.testimonys_Section {
-  flex-direction: row;
-
-}
+/* --- TESTIMONIALS SECTION --- */
 
 .testimonys_Section .right-side {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
   flex-direction: column;
-  text-align: left;
   gap: 20px;
-  width: 560px;
-
+  max-width: 560px; /* Use max-width for better flow */
 }
 
 .testimonys_Section .alt-sm {
@@ -421,12 +412,11 @@ nav .close_icon {
 }
 
 .testimonys_Section .right-side h2 {
-  color: var(--dark-blue-color);
   margin-bottom: 0;
 }
 
 .testimonys_Section .right-side p {
-  margin-bottom: 30px;
+  margin-bottom: var(--spacing-md);
 }
 
 .testimonys_Section .left-side .testimonys_blocks {
@@ -456,10 +446,9 @@ nav .close_icon {
   border-radius: 24px;
   background: #FFF;
   box-shadow: 0 9px 36px 0 rgba(0, 0, 0, 0.20);
-
 }
 
-.testimonys_Section .testimonys_block .testimonys_block-content {
+.testimonys_Section .testimonys_block-content {
   display: flex;
   padding: 24px 32px;
   align-items: flex-start;
@@ -482,25 +471,23 @@ nav .close_icon {
   transform: translateX(20px);
 }
 
-.testimonys_Section .testimonys_block .testimonys_block-name-image {
+.testimonys_Section .testimonys_block-name-image {
   display: flex;
   padding: 0 32px;
   align-items: center;
   gap: 106px;
   align-self: stretch;
-
 }
 
-.testimonys_Section .testimonys_block-name-image .testimonys_block-name {
+.testimonys_Section .testimonys_block-name {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--spacing-xs);
   flex: 1 0 0;
-
 }
 
-.testimonys_Section .testimonys_block-name-image .testimonys_block-image {
+.testimonys_Section .testimonys_block-image {
   display: flex;
   padding-bottom: 24px;
   flex-direction: column;
@@ -511,21 +498,20 @@ nav .close_icon {
 .testimonys_block-image img {
   flex-shrink: 0;
   border-radius: 120px;
-
-
 }
 
-@media(max-width:850px) {
+/* Testimonials Tablet/Mobile (850px) */
+@media(max-width: 850px) {
   .testimonys_Section {
     flex-direction: column;
     align-items: center;
-    height: auto;
-    padding: 60px 0;
+    min-height: auto;
+    padding: var(--spacing-lg) 0;
     gap: 40px;
   }
 
   .testimonys_Section .right-side {
-    width: auto;
+    max-width: 100%; /* Adjust to full width */
     text-align: center;
     align-items: center;
     order: 1;
@@ -540,6 +526,7 @@ nav .close_icon {
   .testimonys_Section .left-side .testimonys_blocks {
     height: auto;
     gap: 40px;
+    width: 100%; /* Added width for context */
   }
 
   .testimonys_Section .left-side .testimonys_block {
@@ -551,43 +538,40 @@ nav .close_icon {
     transform: translateX(0);
   }
 
-  .testimonys_Section .testimonys_block .testimonys_block-name-image {
+  .testimonys_Section .testimonys_block-name-image {
     gap: 20px;
   }
 
-  .testimonys_Section .testimonys_block-name-image .testimonys_block-image {
+  .testimonys_Section .testimonys_block-image {
     flex-direction: row;
     gap: 20px;
     padding-bottom: 0;
   }
-
-  .right-side h2 {
-    order: 1;
-  }
-
-  .right-side p {
-    order: 2;
-  }
-
-  .right-side .btn {
-    display: none;
-  }
-
+  
+  /* Order adjustments for right-side content */
+  .right-side h2 { order: 1; }
+  .right-side p { order: 2; }
+  .right-side .btn { display: none; }
+  
   .testimonys_Section .alt-sm {
     display: inline-block;
     order: 3;
     margin-top: 20px;
   }
+  
+  .testimonys_Section .hr-bar {
+      display: none; /* Hide the bar on mobile */
+  }
 }
 
-/* Courses Section */
 
+/* --- COURSES SECTION --- */
 .courses_Section {
   background: var(--background-gradient);
   flex-direction: column;
   justify-content: flex-start;
-  gap: 30px;
-  padding-top: 60px;
+  gap: var(--spacing-md);
+  padding: 60px var(--container-padding-desktop) 0; /* Updated padding for consistency */
 }
 
 .courses_Section h2 {
@@ -597,11 +581,9 @@ nav .close_icon {
 
 .courses_Section .courses-lists {
   display: flex;
-  flex-direction: row;
-  gap: 30px;
+  gap: var(--spacing-md);
   justify-content: center;
-  align-items: center;
-
+  align-items: stretch; /* Use align-items: stretch to equalize block height */
 }
 
 .courses_Section .courses-block {
@@ -609,11 +591,11 @@ nav .close_icon {
   padding: 0 32px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 30px;
+  gap: var(--spacing-md);
   border-radius: 24px;
   background: #FFF;
-  height: 100%;
-  width: 85%;
+  flex: 1; /* Allow blocks to grow and shrink */
+  max-width: 30%; /* Set a max width for desktop layout */
   justify-content: space-evenly;
 }
 
@@ -621,6 +603,9 @@ nav .close_icon {
   align-self: stretch;
   border-radius: 24px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+  /* Added object-fit for consistent image display */
+  object-fit: cover;
+  height: auto; 
 }
 
 .courses_Section .courses-title-duration {
@@ -629,53 +614,55 @@ nav .close_icon {
   gap: 16px;
   align-self: stretch;
   justify-content: space-between;
-  flex-direction: row;
-  margin-bottom: 30px;
+  margin-bottom: var(--spacing-md);
 }
 
 .courses_Section .courses-title-duration h3 {
-
   color: var(--dark-blue-color);
-  font-family: Raleway;
+  font-family: var(--raleway-font);
   font-size: 30px;
   font-weight: 900;
   line-height: 150%;
-
 }
 
 .courses_Section .courses-title-duration p {
-  color: #023047;
+  color: var(--dark-blue-color);
   font-family: var(--raleway-font);
   font-size: 16px;
   font-weight: 900;
   line-height: 150%;
-
+  margin: 0; /* Removed margin from p inside this block */
 }
 
-@media(max-width:850px) {
+/* Courses Tablet/Mobile (850px) */
+@media(max-width: 850px) {
+  .courses_Section {
+    padding-bottom: 20px;
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+  }
   .courses_Section .courses-lists {
     flex-direction: column;
     align-items: center;
   }
 
-  .courses_Section {
-    padding-bottom: 20px;
+  .courses_Section .courses-block {
+    max-width: 80%; /* Wider blocks on tablet */
+    width: 100%;
   }
 }
 
-@media(max-width:414px) {
+/* Courses Mobile (414px) */
+@media(max-width: 414px) {
   .courses_Section .courses-block {
-    width: 60%;
+    max-width: 90%; /* Adjust width for smaller screens */
   }
 
   .courses_Section .courses-title-duration {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-  }
-
-  .courses_Section .courses-title-duration p {
-    margin: 0;
+    margin-bottom: 0; /* Cleanup margin */
   }
 
   .courses_Section .courses-title-duration h3 {
@@ -683,19 +670,18 @@ nav .close_icon {
   }
 }
 
-/* Get Our App Section */
 
+/* --- GET OUR APP SECTION --- */
 .getourapp_Section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding: 60px 0;
-  height: 50vh;
+  padding: 60px var(--container-padding-desktop);
+  min-height: 50vh; /* Use min-height for better flow */
 }
 
 .getourapp_Section h2 {
-  color: var(--dark-blue-color);
   margin-bottom: 0;
   text-align: center;
 }
@@ -707,9 +693,7 @@ nav .close_icon {
 
 .getourapp_Section .app-links {
   display: flex;
-  flex-direction: row;
   gap: 20px;
-  align-content: center;
   justify-content: center;
   margin-top: 50px;
 }
@@ -722,7 +706,6 @@ nav .close_icon {
   background: #000;
   width: 310px;
   height: 100px;
-
 }
 
 .app-link img {
@@ -732,44 +715,46 @@ nav .close_icon {
 
 .app-link span {
   color: #FFF;
-  text-align: center;
   font-family: var(--poppins-font);
   font-size: 24px;
-  font-style: normal;
   font-weight: 400;
   line-height: 200%;
-
 }
 
-@media(max-width:850px) {
+/* Get Our App Tablet/Mobile (850px) */
+@media(max-width: 850px) {
   .getourapp_Section .app-links {
     margin-top: 20px;
   }
 
   .getourapp_Section {
-    height: auto;
+    min-height: auto;
   }
 }
 
-@media(max-width:414px) {
+/* Get Our App Mobile (414px) */
+@media(max-width: 414px) {
   .getourapp_Section .app-links {
     flex-direction: column;
     gap: 40px;
   }
+  .getourapp_Section {
+    padding: 60px var(--container-padding-mobile);
+  }
 }
 
-/* Footer Section */
 
+/* --- FOOTER SECTION --- */
 .footer_Section {
   background-color: var(--dark-color);
   color: white;
-  justify-content: space-between;
+  display: flex; /* Inherits from .wrapper, but explicitly set for clarity */
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  height: 50vh;
-  padding: 30px 10%;
-
+  min-height: 50vh; /* Use min-height */
+  padding: 30px var(--container-padding-desktop);
+  width: 100%;
 }
 
 .footer_Section .links-container {
@@ -789,42 +774,36 @@ nav .close_icon {
   gap: 16px;
 }
 
-.footer_Section .footer-links .footer-link-list {
+.footer-links .footer-title {
+  color: var(--orange-color);
+  font-family: var(--poppins-font);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 200%;
+}
+
+.footer-links .footer-link-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
 }
 
-.footer-links .footer-title {
-  color: var(--orange-color);
-  text-align: center;
-  font-family: var(--poppins-font);
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 200%;
-
-}
-
 .footer-links .footer-link-list li {
   list-style: none;
-  padding-left: 18px;
+  padding-left: 18px; /* Used for a visual indent/bullet if needed */
 }
 
 .footer-links .footer-link-list li a {
   color: white;
   font-family: var(--poppins-font);
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: 200%;
 }
 
 .footer-link-item.social-icons {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   gap: 16px;
   margin-top: 8px;
 }
@@ -835,61 +814,50 @@ nav .close_icon {
   cursor: pointer;
 }
 
+/* Input Group Styles (Cleaned up) */
 .input-with-button {
   position: relative;
-  width: 520px;
-  /* Match the width of the original input */
-  margin-top: 8px;
-  /* Match the margin of the original input */
+  max-width: 520px; /* Use max-width */
+  width: 100%; /* Important for responsiveness */
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
 }
 
-/* Style for the input field */
 .input-with-button input {
-  /* Set width to 100% of the container */
   width: 100%;
   height: 40px;
   padding: 12px 16px;
+  padding-right: 120px; /* Space for the button */
   border-radius: 8px;
   border: none;
   background-color: #fff;
   color: #000;
   font-family: var(--poppins-font);
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: 200%;
-
-  /* Add padding-right to prevent text from overlapping the button */
-  padding-right: 120px;
-  /* Adjust this value based on your button's width */
 }
 
-/* Focus state for the input field */
 .input-with-button input:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--orange-color);
 }
 
-/* Style for the placeholder text */
 .input-with-button input::placeholder {
   color: #000;
   opacity: 0.6;
 }
 
-
-/*Style and position for the button */
 .input-with-button button {
   position: absolute;
-  top: 50%;
+  top: 66%;
   right: 8px;
   transform: translateY(-50%);
-  margin: 0;
   border: none;
   border-radius: 8px;
   background: var(--dark-blue-color);
   padding: 0 16px;
-  height: 80%;
-
+  height: 50%;
   color: #FFF;
   font-family: var(--poppins-font);
   font-size: 16px;
@@ -897,10 +865,12 @@ nav .close_icon {
   cursor: pointer;
 }
 
-@media(max-width:850px) {
-
+/* Footer Tablet/Mobile (850px) */
+@media(max-width: 850px) {
   .footer_Section {
-    height: auto;
+    min-height: auto;
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
   }
 
   .footer_Section .links-container {
@@ -910,54 +880,47 @@ nav .close_icon {
   .footer_Section .footer-links:nth-child(2) {
     margin-left: 60px;
   }
-
-
 }
 
-@media(max-width:414px) {
-  .footer_Section .footer-links:nth-child(2) {
-    margin-left: 0;
-  }
-
-  .input-with-button {
-    width: 100%;
-  }
-
+/* Footer Mobile (414px) */
+@media(max-width: 414px) {
   .footer_Section .links-container {
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    justify-content: center;
     margin: 0;
   }
 
+  /* Resetting tablet specific margin for a stacked mobile layout */
   .footer_Section .footer-links:nth-child(2) {
     margin-left: 0;
   }
-
-  .footer_Section .footer-links .footer-link-list .footer-link-item {
+  
+  .footer_Section .footer-links,
+  .footer_Section .footer-links .footer-link-list,
+  .footer_Section .footer-link-list li { /* Simplified selector */
+    align-items: center;
     padding-left: 0;
   }
 
-  .footer_Section .footer-links,
-  .footer_Section .footer-links .footer-link-list,
-  .footer_Section .footer-link-list .footer-link-item {
-    align-items: center;
-  }
-
   .input-with-button {
-    display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
     justify-content: center;
   }
 
-  .input-with-button .btn {
+  .input-with-button input {
+    padding-right: 16px; /* Reset padding-right from desktop to allow full width text */
+  }
+
+  .input-with-button button {
     position: static;
     transform: translateY(0);
     width: 40%;
     height: 40px;
     background-color: var(--dark-blue-color);
+    /* Use a utility class or mixin for button styling */
+    padding: 0 32px; /* Adjusted padding to be more like a standard button */
   }
 }

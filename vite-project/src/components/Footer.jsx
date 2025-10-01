@@ -1,75 +1,79 @@
 import React from "react";
+import FooterLinkGroup from "./FooterLinkGroup.jsx";
+import SubscriptionForm from "./SubscriptionForm.jsx";
+
+const footerData = [
+  {
+    title: "Quick Links",
+    links: [
+      { text: "About Us", href: "#about" },
+      { text: "Contact Us", href: "#contact" },
+      { text: "Privacy Policy", href: "#privacy" },
+      { text: "Terms & Conditions", href: "#terms" },
+    ],
+  },
+  {
+    title: "Courses",
+    links: [
+      { text: "Log In", href: "#login" },
+      { text: "Download", href: "#download" },
+      { text: "All Courses", href: "#courses" },
+    ],
+  },
+];
+
+const contactLinks = [
+    { text: "contact@email.com", href: "mailto:contact@email.com" },
+    { 
+        isSocial: true,
+        icons: [
+            { src: "facebook_icon.png", href: "#facebook", alt: "Facebook" },
+            { src: "instagram_icon.png", href: "#instagram", alt: "Instagram" },
+        ]
+    }
+];
 
 const Footer = () => {
   return (
-    <div className="footer_Section container">
+    <footer className="footer_Section container">
+
       <div className="links-container">
 
-      
-      <div className="footer-links">
-        <h3 className="footer-title">Quick Links</h3>
-        <ul className="footer-link-list">
-          <li className="footer-link-item">
-            <a href="#">About Us</a>
-          </li>
-          <li className="footer-link-item">
-            <a href="#">Contact Us</a>
-          </li>
-          <li className="footer-link-item">
-            <a href="#">Privacy Policy</a>
-          </li>
-          <li className="footer-link-item">
-            <a href="#">Terms & Conditions</a>
-          </li>
-        </ul>
-      </div>
-      <div className="footer-links">
-        <h3 className="footer-title">Course</h3>
-        <ul className="footer-link-list">
-          <li className="footer-link-item">
-            <a href="#">Log In</a>
-          </li>
-          <li className="footer-link-item">
-            <a href="#">Download</a>
-          </li>
-          <li className="footer-link-item">
-            <a href="#">All Courses</a>
-          </li>
-          
-        </ul>
-      </div>
-      <div className="footer-links">
-        <h3 className="footer-title">Contact Us</h3>
-        <ul className="footer-link-list">
-          <li className="footer-link-item">
-            <a href="#">contact@email.com</a>
-          </li>
-          <li className="footer-link-item social-icons">
-            <a href="#">
-              <img src="facebook_icon.png" alt="Facebook Icon" />
-            </a>
-            <a href="#">
-              <img src="instagram_icon.png" alt="Instragram Icon" />
-            </a>
-          </li>
-          <li className="footer-link-item">
-            <form action="#">
-              <div className="input-with-button">
+        {footerData.map((group, index) => (
+          <FooterLinkGroup 
+            key={index} 
+            title={group.title} 
+            links={group.links} 
+          />
+        ))}
 
-              <input type="email" placeholder="Enter your email" />
-              <button type="submit" className="btn dark">
-                Subscribe
-              </button>
-              </div>
-              
-            </form>
-          </li>
-          
-        </ul>
+        <div className="footer-links" role="navigation" aria-label="Contact Information">
+            <h3 className="footer-title">Contact Us</h3>
+            <ul className="footer-link-list">
+                {contactLinks.map((link, index) => (
+                    <li 
+                        key={index} 
+                        className={`footer-link-item ${link.isSocial ? 'social-icons' : ''}`}
+                    >
+                        {link.isSocial ? (
+                            link.icons.map((icon, iconIndex) => (
+                                <a key={iconIndex} href={icon.href} target="_blank" rel="noopener noreferrer" aria-label={icon.alt}>
+                                    <img src={icon.src} alt={`${icon.alt} icon`} />
+                                </a>
+                            ))
+                        ) : (
+                            <a href={`mailto:${link.text}`}>{link.text}</a>
+                        )}
+                    </li>
+                ))}
+
+                <SubscriptionForm />
+            </ul>
+        </div>
       </div>
-      </div>
-      <p className="footer-note">© 2024 GameDev. All rights reserved.</p>
-    </div>
+
+      <p className="footer-note">© {new Date().getFullYear()} GameDev. All rights reserved.</p>
+    </footer>
   );
 };
 

@@ -1,21 +1,38 @@
 import React from "react";
+import AppLink from "./AppLink.jsx";
+
+const appLinksData = [
+  {
+    id: 1,
+    storeName: "App Store",
+    iconSrc: "app-store-icon.png",
+    linkUrl: "URL_TO_APP_STORE_PAGE",
+  },
+  {
+    id: 2,
+    storeName: "Google Play",
+    iconSrc: "google-play-store-icon1.png",
+    linkUrl: "URL_TO_GOOGLE_PLAY_PAGE",
+  },
+];
 
 const Getourapp = () => {
   return (
-    <div className="getourapp_Section container">
+    <section className="getourapp_Section container">
       <h2>Get our App</h2>
-      <p>You can use our App for better experience on smartphones</p>
+      <p>You can use our App for a better experience on smartphones.</p>
+
       <div className="app-links">
-        <div className="app-link">
-          <img src="app-store-icon.png" alt="" />
-          <span>App Store</span>
-        </div>
-        <div className="app-link">
-          <img src="google-play-store-icon1.png" alt="" />
-          <span>Google Play</span>
-        </div>
+        {appLinksData.map((link) => (
+          <AppLink
+            key={link.id}
+            storeName={link.storeName}
+            iconSrc={link.iconSrc}
+            linkUrl={link.linkUrl}
+          />
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 

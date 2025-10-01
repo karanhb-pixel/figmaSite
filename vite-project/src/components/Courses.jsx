@@ -1,29 +1,40 @@
 import React from "react";
+import CourseBlock from "./CourseBlock.jsx";
+
+const coursesData = [
+  {
+    id: 1,
+    title: "Game Design Essentials",
+    duration: "8 Hrs",
+    imageSrc: "courses 1.png",
+    altText: "Course cover for Game Design Essentials",
+  },
+  {
+    id: 2,
+    title: "Unity Game Engine Fundamentals",
+    duration: "10 Hrs",
+    imageSrc: "courses 2.png",
+    altText: "Course cover for Unity Game Engine Fundamentals",
+  },
+];
 
 const Courses = () => {
   return (
-    <div className="courses_Section container">
+    <section className="courses_Section container">
       <h2>Our Courses</h2>
       <div className="courses-lists">
-        <div className="courses-block">
-          <img src="courses 1.png" alt="" />
-          <div className="courses-title-duration">
-
-          <h3>Game Design Essentials</h3>
-          <p>8 Hrs</p>
-          </div>
-        </div>
-        <div className="courses-block">
-          <img src="courses 2.png" alt="" />
-          <div className="courses-title-duration">
-
-          <h3>Unity Game Engine Fundamentals 8 HRS</h3>
-          <p>10 Hrs</p>
-          </div>
-        </div>
+        {coursesData.map((course) => (
+          <CourseBlock
+            key={course.id}
+            title={course.title}
+            duration={course.duration}
+            imageSrc={course.imageSrc}
+            altText={course.altText}
+          />
+        ))}
       </div>
       <button className="btn light">All Courses</button>
-    </div>
+    </section>
   );
 };
 

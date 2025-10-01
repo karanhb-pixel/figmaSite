@@ -1,40 +1,46 @@
 import React from "react";
+import TestimonialBlock from "./TestimonialBlock.jsx";
+
+const testimonialsData = [
+  {
+    id: 1,
+    content: "This is a great course. It helped me a lot. Thank you :)",
+    name: "Jane Cooper",
+    role: "Developer, Sony",
+    imageSrc: "testimonys 1.png",
+    blockType: "block-1",
+  },
+  {
+    id: 2,
+    content: "Amazing Work! Well done!",
+    name: "Jacob Jones",
+    role: "Designer, Facebook",
+    imageSrc: "testimonys 2.png",
+    blockType: "block-2",
+  },
+];
 
 const Testimonys = () => {
   return (
-    <div className="testimonys_Section container">
-      <div className="left-side">
-        <div className="hr-bar"></div>
-        <div className="testimonys_blocks">
+    <section className="testimonys_Section container">
 
-        <div className="testimonys_block block-1">
-          <p className="testimonys_block-content">
-            This is a great course. It helped me a lot. Thank you :)
-          </p>
-          <div className="testimonys_block-name-image">
-            <div className="testimonys_block-name">
-              <h3>Jane Cooper</h3>
-              <p>Developer, Sony</p>
-            </div>
-            <div className="testimonys_block-image">
-              <img src="testimonys 1.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="testimonys_block block-2">
-          <p className="testimonys_block-content">Amazing Work! Well done!</p>
-          <div className="testimonys_block-name-image">
-            <div className="testimonys_block-name">
-              <h3>Jacob Jones</h3>
-              <p>Designer, Facebook</p>
-            </div>
-            <div className="testimonys_block-image">
-              <img src="testimonys 2.png" alt="" />
-            </div>
-          </div>
-        </div>
+      <div className="left-side">
+        <div className="hr-bar" aria-hidden="true"></div>
+
+        <div className="testimonys_blocks">
+            {testimonialsData.map((testimonial) => (
+                <TestimonialBlock
+                    key={testimonial.id}
+                    content={testimonial.content}
+                    name={testimonial.name}
+                    role={testimonial.role}
+                    imageSrc={testimonial.imageSrc}
+                    blockType={testimonial.blockType}
+                />
+            ))}
         </div>
       </div>
+
       <div className="right-side">
         <h2>What our students say</h2>
         <p>
@@ -46,8 +52,9 @@ const Testimonys = () => {
         </p>
         <button className="btn light">Learn More</button>
       </div>
+
       <button className="btn light alt-sm">Learn More</button>
-    </div>
+    </section>
   );
 };
 

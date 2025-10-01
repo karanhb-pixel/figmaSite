@@ -1,24 +1,37 @@
+import { lazy, Suspense } from 'react';
+import './App.css';
 
-import './App.css'
+
+const Testimonys = lazy(() => import('./components/Testimonys.jsx'));
+const Courses = lazy(() => import('./components/Courses.jsx'));
+const Getourapp = lazy(() => import('./components/Getourapp.jsx'));
+const Footer = lazy(() => import('./components/Footer.jsx'));
+
 import Navbar from './components/Navbar.jsx';
 import Hero_Section from './components/Hero_Section.jsx';
-import Testimonys from './components/Testimonys.jsx';
-import Courses from './components/Courses.jsx';
-import Getourapp from './components/Getourapp.jsx';
-import Footer from './components/Footer.jsx';
+
+
+const LoadingFallback = () => (
+  <div className="container" style={{ minHeight: '50vh', justifyContent: 'center', alignItems: 'center' }}>
+    <p>Loading Content...</p>
+  </div>
+);
+
+
 function App() {
   return (
-   <header>
-    <div className="wrapper">
+    <main className="wrapper">
       <Navbar />
       <Hero_Section />
-      <Testimonys/>
-      <Courses/>
-      <Getourapp/>
-      <Footer/>
-    </div>
-   </header>
-  )
+      <Suspense fallback={<LoadingFallback />}>
+        <Testimonys />
+        <Courses />
+        <Getourapp />
+        <Footer />
+      </Suspense>
+
+    </main>
+  );
 }
 
-export default App
+export default App;
